@@ -58,8 +58,8 @@ export default function AdGenerator() {
     <div className="wrap">
       <div className="intro">
         <div className="eyebrow">v1 — app en ligne</div>
-        <h1>Génère tes 3 pubs</h1>
-        <p>Renseigne les infos une fois, les 3 templates se mettent à jour en direct. Chaque carte a son propre bouton de téléchargement en PNG.</p>
+        <h1>Génère tes 5 pubs</h1>
+        <p>Renseigne les infos une fois, les 5 templates se mettent à jour en direct. Chaque carte a son propre bouton de téléchargement en PNG.</p>
       </div>
 
       <div className="layout">
