@@ -19,8 +19,10 @@ export default function AdGenerator() {
   const [downloading, setDownloading] = useState(null);
 
   const story1 = useRef(null);
-  const story2 = useRef(null);
-  const story3 = useRef(null);
+  const storyMinimalClair = useRef(null);
+  const storyMinimalSombre = useRef(null);
+  const storyMinimalSable = useRef(null);
+  const storyNeon = useRef(null);
 
   function handlePhotoChange(e) {
     const file = e.target.files[0];
@@ -61,6 +63,7 @@ export default function AdGenerator() {
       </div>
 
       <div className="layout">
+        {/* FORM */}
         <div className="panel">
           <h2>Tes infos</h2>
 
@@ -110,6 +113,7 @@ export default function AdGenerator() {
           <div className="hint">Le téléchargement se fait en PNG, prêt à publier en story Instagram/TikTok (format 9:16).</div>
         </div>
 
+        {/* CARDS */}
         <div className="board">
           <div className="card-wrap">
             <div className="card-label">1 — Marché</div>
@@ -135,8 +139,8 @@ export default function AdGenerator() {
           </div>
 
           <div className="card-wrap">
-            <div className="card-label">2 — Minimal Prix</div>
-            <div className="story minimal" ref={story2}>
+            <div className="card-label">2 — Minimal Clair</div>
+            <div className="story minimal minimal-clair" ref={storyMinimalClair}>
               <div className="top">
                 <div className="eyebrow2">Nouveauté</div>
                 <div className="phrase">{phrase}</div>
@@ -152,16 +156,66 @@ export default function AdGenerator() {
             </div>
             <button
               className="download-btn"
-              disabled={downloading === 'pub-minimal'}
-              onClick={() => handleDownload(story2, 'pub-minimal')}
+              disabled={downloading === 'pub-minimal-clair'}
+              onClick={() => handleDownload(storyMinimalClair, 'pub-minimal-clair')}
             >
-              {downloading === 'pub-minimal' ? 'Export…' : 'Télécharger'}
+              {downloading === 'pub-minimal-clair' ? 'Export…' : 'Télécharger'}
             </button>
           </div>
 
           <div className="card-wrap">
-            <div className="card-label">3 — Néon Nuit</div>
-            <div className="story neon" ref={story3}>
+            <div className="card-label">3 — Minimal Sombre</div>
+            <div className="story minimal minimal-sombre" ref={storyMinimalSombre}>
+              <div className="top">
+                <div className="eyebrow2">Nouveauté</div>
+                <div className="phrase">{phrase}</div>
+              </div>
+              <div className="photo-zone">{photoZone('PHOTO PRODUIT')}</div>
+              <div className="bottom">
+                <div className="prix-block">
+                  <div className="label">Prix</div>
+                  <div className="prix">{prix}</div>
+                </div>
+                <div className="dot"></div>
+              </div>
+            </div>
+            <button
+              className="download-btn"
+              disabled={downloading === 'pub-minimal-sombre'}
+              onClick={() => handleDownload(storyMinimalSombre, 'pub-minimal-sombre')}
+            >
+              {downloading === 'pub-minimal-sombre' ? 'Export…' : 'Télécharger'}
+            </button>
+          </div>
+
+          <div className="card-wrap">
+            <div className="card-label">4 — Minimal Sable</div>
+            <div className="story minimal minimal-sable" ref={storyMinimalSable}>
+              <div className="top">
+                <div className="eyebrow2">Nouveauté</div>
+                <div className="phrase">{phrase}</div>
+              </div>
+              <div className="photo-zone">{photoZone('PHOTO PRODUIT')}</div>
+              <div className="bottom">
+                <div className="prix-block">
+                  <div className="label">Prix</div>
+                  <div className="prix">{prix}</div>
+                </div>
+                <div className="dot"></div>
+              </div>
+            </div>
+            <button
+              className="download-btn"
+              disabled={downloading === 'pub-minimal-sable'}
+              onClick={() => handleDownload(storyMinimalSable, 'pub-minimal-sable')}
+            >
+              {downloading === 'pub-minimal-sable' ? 'Export…' : 'Télécharger'}
+            </button>
+          </div>
+
+          <div className="card-wrap">
+            <div className="card-label">5 — Néon Nuit</div>
+            <div className="story neon" ref={storyNeon}>
               <div className="glow"></div>
               <div className="top"><div className="phrase">{phrase}</div></div>
               <div className="photo-zone">{photoZone('PHOTO PRODUIT')}</div>
@@ -175,7 +229,7 @@ export default function AdGenerator() {
             <button
               className="download-btn"
               disabled={downloading === 'pub-neon'}
-              onClick={() => handleDownload(story3, 'pub-neon')}
+              onClick={() => handleDownload(storyNeon, 'pub-neon')}
             >
               {downloading === 'pub-neon' ? 'Export…' : 'Télécharger'}
             </button>
