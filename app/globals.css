@@ -93,16 +93,37 @@ body {
 .marche .tag .devise { font-size: 9px; letter-spacing: 0.08em; margin-top: 2px; }
 .marche .brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 11px; color: #0B4F4A; writing-mode: vertical-rl; letter-spacing: 0.08em; }
 
-.minimal { background: #FBF9F4; color: #1A1A1A; display: flex; flex-direction: column; justify-content: space-between; }
+.minimal { display: flex; flex-direction: column; justify-content: space-between; }
 .minimal .top { padding: 28px 24px 0; }
-.minimal .eyebrow2 { font-family: 'Space Grotesk', sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: #7A7256; margin-bottom: 10px; }
-.minimal .phrase { font-family: 'Fraunces', serif; font-weight: 600; font-style: italic; font-size: 18px; line-height: 1.35; color: #1A1A1A; word-break: break-word; }
-.minimal .photo-zone { flex: 1; margin: 16px 24px; border-top: 1px solid #D8D2C2; border-bottom: 1px solid #D8D2C2; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.minimal .eyebrow2 { font-family: 'Space Grotesk', sans-serif; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 10px; }
+.minimal .phrase { font-family: 'Fraunces', serif; font-weight: 600; font-style: italic; font-size: 18px; line-height: 1.35; word-break: break-word; }
+.minimal .photo-zone { flex: 1; margin: 16px 24px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 .minimal .photo-zone img { width: 100%; height: 100%; object-fit: cover; }
-.minimal .bottom { padding-top: 14px; margin: 0 24px 26px; display: flex; align-items: flex-end; justify-content: space-between; border-top: 2px solid #1A1A1A; }
-.minimal .prix-block .label { font-family: 'Space Grotesk', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #7A7256; margin-bottom: 2px; }
-.minimal .prix-block .prix { font-family: 'Fraunces', serif; font-weight: 900; font-size: 27px; line-height: 1; color: #14523A; }
-.minimal .dot { width: 8px; height: 8px; border-radius: 50%; background: #14523A; margin-bottom: 6px; }
+.minimal .bottom { padding-top: 14px; margin: 0 24px 26px; display: flex; align-items: flex-end; justify-content: space-between; }
+.minimal .prix-block .label { font-family: 'Space Grotesk', sans-serif; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2px; }
+.minimal .prix-block .prix { font-family: 'Fraunces', serif; font-weight: 900; font-size: 27px; line-height: 1; }
+.minimal .dot { width: 8px; height: 8px; border-radius: 50%; margin-bottom: 6px; }
+
+.minimal-clair { background: #FBF9F4; color: #1A1A1A; }
+.minimal-clair .eyebrow2, .minimal-clair .prix-block .label { color: #7A7256; }
+.minimal-clair .photo-zone { border-top: 1px solid #D8D2C2; border-bottom: 1px solid #D8D2C2; }
+.minimal-clair .bottom { border-top: 2px solid #1A1A1A; }
+.minimal-clair .prix-block .prix { color: #14523A; }
+.minimal-clair .dot { background: #14523A; }
+
+.minimal-sombre { background: #15151A; color: #F2F0EA; }
+.minimal-sombre .eyebrow2, .minimal-sombre .prix-block .label { color: #9A978C; }
+.minimal-sombre .photo-zone { border-top: 1px solid rgba(242,240,234,0.18); border-bottom: 1px solid rgba(242,240,234,0.18); }
+.minimal-sombre .bottom { border-top: 2px solid #F2F0EA; }
+.minimal-sombre .prix-block .prix { color: #E0A672; }
+.minimal-sombre .dot { background: #E0A672; }
+
+.minimal-sable { background: #EFE3D3; color: #3B2E22; }
+.minimal-sable .eyebrow2, .minimal-sable .prix-block .label { color: #8C7355; }
+.minimal-sable .photo-zone { border-top: 1px solid #C9B79C; border-bottom: 1px solid #C9B79C; }
+.minimal-sable .bottom { border-top: 2px solid #3B2E22; }
+.minimal-sable .prix-block .prix { color: #8B3A2B; }
+.minimal-sable .dot { background: #8B3A2B; }
 
 .neon { background: #0D0D14; color: #F2F2F7; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
 .neon .glow { position: absolute; top: 42%; left: 50%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(123,47,247,0.45) 0%, rgba(123,47,247,0) 70%); transform: translate(-50%, -50%); z-index: 0; }
