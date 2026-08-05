@@ -10,13 +10,19 @@ function shortPrix(val) {
 }
 
 export default function AdGenerator() {
-  const [photo, setPhoto] = useState(null);
+  const [photoOriginal, setPhotoOriginal] = useState(null);
+  const [photoDetoure, setPhotoDetoure] = useState(null);
+  const [useDetoure, setUseDetoure] = useState(true);
+  const [removingBg, setRemovingBg] = useState(false);
+  const [bgError, setBgError] = useState(false);
   const [photoName, setPhotoName] = useState('');
   const [phrase, setPhrase] = useState('Fait main, livré chez toi');
   const [prix, setPrix] = useState('15 000');
   const [devise, setDevise] = useState('CFA');
   const [brand, setBrand] = useState('TON NOM');
   const [downloading, setDownloading] = useState(null);
+
+  const photo = useDetoure && photoDetoure ? photoDetoure : photoOriginal;
 
   const story1 = useRef(null);
   const storyMinimalClair = useRef(null);
@@ -29,10 +35,33 @@ export default function AdGenerator() {
     if (!file) return;
     const reader = new FileReader();
     reader.onload = (ev) => {
-      setPhoto(ev.target.result);
+      setPhotoOriginal(ev.target.result);
+      setPhotoDetoure(null);
+      setUseDetoure(true);
       setPhotoName(file.name);
     };
     reader.readAsDataURL(file);
+
+    setRemovingBg(true);
+    setBgError(false);
+    const formData = new FormData();
+    formData.append('image', file);
+    fetch('/api/remove-bg', { method: 'POST', body: formData })
+      .then((res) => {
+        if (!res.ok) throw new Error('Détourage échoué');
+        return res.blob();
+      })
+      .then((blob) => {
+        setPhotoDetoure(URL.createObjectURL(blob));
+      })
+      .catch((err) => {
+        console.error('Détourage échoué', err);
+        setBgError(true);
+        setUseDetoure(false);
+      })
+      .finally(() => {
+        setRemovingBg(false);
+      });
   }
 
   async function handleDownload(ref, filename) {
@@ -58,7 +87,7 @@ export default function AdGenerator() {
     <div className="wrap">
       <div className="intro">
         <div className="eyebrow">v1 — app en ligne</div>
-        <h1>Génère tes 5 pubs</h1>
+        <h1>Génère tes pubs</h1>
         <p>Renseigne les infos une fois, les 5 templates se mettent à jour en direct. Chaque carte a son propre bouton de téléchargement en PNG.</p>
       </div>
 
@@ -71,9 +100,24 @@ export default function AdGenerator() {
             <label>Photo produit</label>
             <label className="upload-box">
               {photo && <img className="upload-preview" src={photo} alt="aperçu" />}
-              <span>{photoName || 'Clique pour choisir une image'}</span>
+              <span>
+                {removingBg
+                  ? 'Détourage du fond en cours…'
+                  : bgError
+                  ? 'Détourage indisponible — photo originale utilisée'
+                  : photoName || 'Clique pour choisir une image'}
+              </span>
               <input type="file" accept="image/*" onChange={handlePhotoChange} />
             </label>
+            {photoDetoure && !removingBg && (
+              <button
+                type="button"
+                className="toggle-bg-btn"
+                onClick={() => setUseDetoure((v) => !v)}
+              >
+                {useDetoure ? 'Revenir à la photo originale' : 'Utiliser la version détourée'}
+              </button>
+            )}
           </div>
 
           <div className="field">
@@ -238,7 +282,7 @@ export default function AdGenerator() {
       </div>
 
       <footer>
-        v1 — sans détourage automatique du fond (l&apos;utilisateur upload une photo déjà propre). Export PNG généré directement dans le navigateur.
+        Le détourage du fond est automatique (via remove.bg). Si le résultat n&apos;est pas parfait, tu peux revenir à la photo originale.
       </footer>
     </div>
   );
