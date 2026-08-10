@@ -1,4 +1,4 @@
-import PubBackgroundPrototype from "../../composants/PubBackgroundPrototype";
+import PubBackgroundPrototype from "../../components/PubBackgroundPrototype";
 
 export default function Page() {
   return <PubBackgroundPrototype />;
